@@ -23,8 +23,7 @@ _* Installation instructions offered in detail on the link above_
   1. Provide Network Architecture file ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ).
      You can use any other CNN architecture of your choice. This one is the proposed architecture as described in the paper. 
   2. Split you data into train and test as shown in figure bellow.
- <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train.PNG" width="300" height="300">
- <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/test.PNG" width="300" height="300">
+ <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train-test.PNG" width="300" height="300">
 
 
 
