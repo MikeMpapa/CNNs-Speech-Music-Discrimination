@@ -24,7 +24,7 @@ _* Installation instructions offered in detail on the link above_
      You can use any other CNN architecture of your choice. This one is the proposed architecture as described in the paper. 
   2. Split you data into train and test as shown in figure bellow.
 
-                           
+           ![Training Data Structure](train.png)![Testing Data Structure](test.png)                
 
 
 ##Code Example
@@ -36,4 +36,3 @@ _* Installation instructions offered in detail on the link above_
 
 
 ##Cite
-
