@@ -18,9 +18,11 @@ This project describes a new approach to the very traditional problem of Speech-
  1. [PyAudio](https://github.com/tyiannak/pyAudioAnalysis.git) 
  2. [CAFFE Deep-Learning Framework](https://github.com/BVLC/caffe)
  
-_* Installation instruction offered in detail on the links_
+_* Installation instructions offered in detail on the link above_
 
 ##Code Description
+##### CNN Training 
+1. Define Architecture file (<network_architecture>.prototxt)
 
 ##Code Example
 --how to run and outputs
