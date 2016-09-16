@@ -7,9 +7,9 @@ This project describes a new approach to the very traditional problem of Speech-
  * Audio segmentation using the [PyAudio](https://github.com/tyiannak/pyAudioAnalysis.git) analysis lybrary
  * CNN training using the [CAFFE Deep-Learning Framework](https://github.com/BVLC/caffe)
  * Audio classification using: 
-  1. CNNs
-  2. CNNs + median_filtering 
-  3. CNNs + median_filtering + HMMs
+  * CNNs
+  * CNNs + median_filtering 
+  * CNNs + median_filtering + HMMs
 
 ##Motivation
 
