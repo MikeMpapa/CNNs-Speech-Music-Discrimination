@@ -21,8 +21,13 @@ This project describes a new approach to the very traditional problem of Speech-
 _* Installation instructions offered in detail on the link above_
 
 ##Code Description
-##### CNN Training 
-1. Define Architecture file (<network_architecture>.prototxt)
+* **CNN Training** 
+  1. Provide Network Architecture file ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ).
+     You can use any other CNN architecture of your choice. This one is the proposed architecture as described in the paper. 
+  2. Split you data into train and test as shown in figure bellow.
+
+                           
+
 
 ##Code Example
 --how to run and outputs
