@@ -1,1 +1,1 @@
-# CNNs-on-Speech-Music-Discrimination
+# CNNs:Speech-Music-Discrimination
