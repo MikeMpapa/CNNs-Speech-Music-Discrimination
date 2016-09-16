@@ -26,7 +26,7 @@ _* Installation instructions offered in detail on the link above_
     
  <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train-test.PNG" width="500" height="300">
  
-_Train/Test and Classes represent directories whereas Samples represent files_
+     _*Train/Test and Classes represent directories whereas Samples represent files_
 
 
 ##Code Example
