@@ -11,8 +11,6 @@ This project describes a new approach to the very traditional problem of Speech-
   * CNNs + median_filtering 
   * CNNs + median_filtering + HMMs
 
-##Motivation
-
 ##Installation
 - Dependencies
  1. [PyAudio](https://github.com/tyiannak/pyAudioAnalysis.git) 
