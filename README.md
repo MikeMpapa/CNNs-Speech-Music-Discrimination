@@ -24,14 +24,11 @@ _* Installation instructions offered in detail on the above links_
      You can use any other CNN architecture of your choice. This one is the proposed architecture as described in the paper. 
   2. Split you data into train and test as shown in figure bellow:
  
-<figure>
   <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train-test.PNG" width="500" height="300">
-  <figcaption>Fig1. - A view of the pulpit rock in Norway.</figcaption>
-</figure> 
-  
-     _*Train/Test and Classes represent directories whereas Samples represent files_
+ 
+      _*Train/Test and Classes represent directories whereas Samples represent files_
      
-       _**Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown bellow_
+      _**Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown bellow:_
 
 
 ##Code Example
