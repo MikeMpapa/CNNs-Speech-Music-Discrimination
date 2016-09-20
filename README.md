@@ -58,13 +58,14 @@ python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> 
     ```shell 
     python trainCNN.py -h
     ``` 
-    * Outputs:
-     1. \<snapshot_prefix\>_solver.prototxt
+  3. Outputs:
+     1. _\<snapshot_prefix\>_solver.prototxt_
          Solver file required by caffe to train the CNN. The solver file describes all the parameters of the current experients. Commented lines have additional information regarding the experiments that are not required by the Caffe framework.
-     2. \<snapshot_prefix\>_TrainSource.txt & \<snapshot_prefix\>_TestSource.txt
+     2. _\<snapshot_prefix\>_TrainSource.txt_ & _\<snapshot_prefix\>_TestSource.txt_
          Full paths to training and test samples with each samples class
      
   * Train HMM
+     **TO BE UPDATED**
 
 ####  **Classification**
 
