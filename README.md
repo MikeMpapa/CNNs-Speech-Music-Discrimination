@@ -38,7 +38,7 @@ _* Installation instructions offered in detail on the above links_
   
 #### **Training** 
 
-  * Train a CNN
+  * **Train a CNN**
   
   1. Provide Network Architecture file ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ).
      You can use any other CNN architecture of your choice. This one is the proposed architecture as described in the paper. 
@@ -64,7 +64,8 @@ python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> 
      2. _\<snapshot_prefix\>_TrainSource.txt_ & _\<snapshot_prefix\>_TestSource.txt_
          Full paths to training and test samples with each samples class
      
-  * Train HMM
+  * **Train HMM**
+  
      **TO BE UPDATED**
 
 ####  **Classification**
@@ -76,7 +77,7 @@ python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> 
    ```shell
 python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 4000
 ```
- * Finetune pretrained network (train and test paths are according to Fig1_):
+ * Finetune pretrained network (_train and test paths are according to Fig1_):
  
    ```shell
 python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 1000 --init caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000.caffemodel --init_type fin
