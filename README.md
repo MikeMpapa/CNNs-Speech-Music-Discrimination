@@ -22,15 +22,16 @@ _* Installation instructions offered in detail on the above links_
 * **CNN Training** 
   1. Provide Network Architecture file ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ).
      You can use any other CNN architecture of your choice. This one is the proposed architecture as described in the paper. 
-  2. Split you data into train and test as shown in figure bellow:
+  2. Split you data into train and test as shown in Fig1:
  
   <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train-test.PNG" width="500" height="300">
- 
+   <figcaption>Fig1. - Data Structure</figcaption>
+
     _*Train/Test and Classes represent directories whereas Samples represent files_
      
-    _**Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown bellow_
+    _**Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown in Fig2_
   <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg.png" width="227" height="227">
-
+  <figcaption>Fig2. - Sample Spectrogram</figcaption>
 
 ##Code Example
 --how to run and outputs
