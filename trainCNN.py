@@ -115,7 +115,7 @@ def train(solver_prototxt_filename, init, init_type):
                  elif init_type == 'fin':
                      print tmp[0]+" -solver "+ solver_prototxt_filename +" -weights " + init # .caffemodel file requiered for finetuning
                  elif init_type == 'res':
-                     print tmp[0]+" -solver "+ solver_prototxt_filename +" -snapshot " + init # .solverstate file requiered for finetuning
+                     print tmp[0]+" -solver "+ solver_prototxt_filename +" -snapshot " + init # .solverstate file requiered for resuming training
                  else:
                      raise ValueError("No specific init_type defined for pre-trained network "+init)
               else:
