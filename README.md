@@ -14,19 +14,24 @@ This project describes a new approach to the very traditional problem of Speech-
 ##Installation
 - Dependencies
  1. [PyAudio](https://github.com/tyiannak/pyAudioAnalysis.git) 
- 2. [CAFFE Deep-Learning Framework](https://github.com/BVLC/caffe)
+ 2. [CAFFE Deep-Learning Framework](http://caffe.berkeleyvision.org/installation.html)
  
-_* Installation instructions offered in detail on the link above_
+_* Installation instructions offered in detail on the above links_
 
 ##Code Description
 * **CNN Training** 
   1. Provide Network Architecture file ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ).
      You can use any other CNN architecture of your choice. This one is the proposed architecture as described in the paper. 
   2. Split you data into train and test as shown in figure bellow:
-    
- <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train-test.PNG" width="500" height="300">
  
+<figure>
+  <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train-test.PNG" width="500" height="300">
+  <figcaption>Fig1. - A view of the pulpit rock in Norway.</figcaption>
+</figure> 
+  
      _*Train/Test and Classes represent directories whereas Samples represent files_
+     
+       _**Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown bellow_
 
 
 ##Code Example
