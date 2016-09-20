@@ -3,13 +3,14 @@
 ##Synopsis
 This project describes a new approach to the very traditional problem of Speech-Music Discrimination. According to our knowledge, the proposed method, provides state-of-the-art results on the task. We employ a Deep Convolutional Neural Network (_CNN_) and we offer a compact framework to perform segmentation and binary (Speech/Music) classification. Our method is unchained from traditional audio features, which offer inferior results on the task as shown in (--reference to the paper--). Instead it exploits the highly invariant features produced by CNNs and opperates on pseudocolored RGB frequency-images, which represent wav segments. 
 
-**We offer a mechanism for:**
+**The repository consists of the following modules:**
  * Audio segmentation using the [PyAudio](https://github.com/tyiannak/pyAudioAnalysis.git) analysis lybrary
- * CNN training using the [CAFFE Deep-Learning Framework](https://github.com/BVLC/caffe)
+ * CNN training using the [CAFFE Deep-Learning Framework](https://github.com/BVLC/caffe).  
  * Audio classification using: 
   * CNNs
   * CNNs + median_filtering 
   * CNNs + median_filtering + HMMs
+ * A pretrained CNN for the task of Speech/Music Discrimination. The network can be also used for weight initialization for other similar tasks. 
 
 ##Installation
 - Dependencies
@@ -21,8 +22,10 @@ _* Installation instructions offered in detail on the above links_
 ##Code Description
 
 * **Data Preparation**
+   1. Convert your wav files into pseudocolored RGB spectrogram images using _generateSpectrograms.py_
+      _TO BE UPDATED a)How to run, b)How to set segmentation parameters c) HOw the output looks like_
 
-   Split you data into train and test as shown in Fig1:
+   2. Split the spectrogram images into train and test as shown in Fig1:
  
    <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train-test.PNG" width="500" height="300">
    <figcaption>Fig1. - Data Structure</figcaption>
@@ -33,10 +36,16 @@ _* Installation instructions offered in detail on the above links_
     <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg.png" width="227" height="227">
     <figcaption>Fig2. - Sample Spectrogram</figcaption>
   
-* **CNN Training** 
+* **Training** 
+***Train a CNN
   1. Provide Network Architecture file ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ).
      You can use any other CNN architecture of your choice. This one is the proposed architecture as described in the paper. 
-   
+  2. Training
+   1. Train from scratch
+   2. Finetune pretrained network
+  ***Train HMM
+
+* **Classification**
 
 ##Code Example
 --how to run and outputs
