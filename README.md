@@ -29,7 +29,7 @@ _* Installation instructions offered in detail on the above links_
     _*Train/Test and Classes represent directories whereas Samples represent files_
      
     _**Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown bellow_
-  <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg.png" width="500" height="300">
+  <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg.png" width="227" height="227">
 
 
 ##Code Example
