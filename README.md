@@ -21,7 +21,7 @@ _* Installation instructions offered in detail on the above links_
 
 ##Code Description
 
-* **Data Preparation**
+#### **Data Preparation**
    1. Convert your wav files into pseudocolored RGB spectrogram images using _generateSpectrograms.py_
       _TO BE UPDATED a)How to run, b)How to set segmentation parameters c) HOw the output looks like_
 
@@ -36,14 +36,30 @@ _* Installation instructions offered in detail on the above links_
     <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg.png" width="227" height="227">
     <figcaption>Fig2. - Sample Spectrogram</figcaption>
   
-* **Training** 
-***Train a CNN
+#### **Training** 
+
+  * Train a CNN
+  
   1. Provide Network Architecture file ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ).
      You can use any other CNN architecture of your choice. This one is the proposed architecture as described in the paper. 
-  2. Training
-   1. Train from scratch
-   2. Finetune pretrained network
-  ***Train HMM
+  2. Train
+ 
+    Training can be done either by training a new network from sratch or by finetuning a pretrained architecture. The pretrained model used in the paper for fine-tuning is the caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000 initially proposed in [Donahue, Jeffrey, et al. "Long-term recurrent convolutional networks for visual recognition and description." Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2015.](http://arxiv.org/abs/1411.4389)
+
+    * Train from scratch:
+   ```shell
+python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations>
+``` 
+    * Finetune pretrained network:
+   ```shell
+python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations> --init <pretrained_network>.caffemodel --init_type fin
+``` 
+    * For more details about modifying other learning parameters (i.e learning rate, step size etc.) type:
+    ```shell 
+    python trainCNN.py -h
+    ``` 
+    
+  * Train HMM
 
 * **Classification**
 
