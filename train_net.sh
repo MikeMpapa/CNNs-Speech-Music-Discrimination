@@ -1,4 +1,4 @@
 #!/bin/sh
-TOOLS=../../build/tools
+TOOLS=../caffe/build/tools
 
-GLOG_logtostderr=1 $TOOLS/caffe train        -solver testWrapper_solver.prototxt -snapshot SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_no_finetune_original_data_iter_3000.solverstate
+GLOG_logtostderr=1 $TOOLS/caffe train          -solver SM_imagenet_1000_noaug_solver.prototxt -weights caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000

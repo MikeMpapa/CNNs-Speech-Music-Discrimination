@@ -13,11 +13,10 @@ layer {
     mean_value: 103.939
     mean_value: 116.779
     mean_value: 123.68
-    flow: false
   }
   image_data_param {
-    source: "Sound_source_Train_RGB_ALL_augmented.txt"
-    root_folder: "spectrograms/"
+    source: "SM_imagenet_1000_noaug_TrainSource.txt"
+    root_folder: "speechMusicSpectrograms/Train//"
     batch_size: 128
     new_height: 240
     new_width: 320
@@ -37,12 +36,11 @@ layer {
     crop_size: 227
     mean_value: 103.939
     mean_value: 116.779
-    mean_value: 123.68
-    flow: false
+    mean_value: 123.68    
   }
   image_data_param {
-    source: "Sound_source_Test_RGB_NONE_augmented.txt"
-    root_folder: "spectrograms/"
+    source: "SM_imagenet_1000_noaug_TestSource.txt"
+    root_folder: "speechMusicSpectrograms/Test//"
     batch_size: 128
     new_height: 240
     new_width: 320
