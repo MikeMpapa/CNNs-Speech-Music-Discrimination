@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import time
 
 #Load Caffe library
-caffe_root = '../../'
+caffe_root = '../lisa-caffe-public/'
 sys.path.insert(0,caffe_root + 'python')
 import caffe
 caffe.set_mode_cpu()
@@ -104,7 +104,7 @@ def mtCNN_classification(signal, Fs, mtWin, mtStep, RGB_singleFrame_net, SOUND_m
     return np.array(flagsInd), classesAll, np.array(Ps)
 
 def loadCNN():
-    singleFrame_model = 'SOUND_deploy_singleFrame.prototxt'
+    singleFrame_model = 'SpeechMusic_deploy.prototxt'
     #RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_1000_ALL_TRAIN_iter_1000.caffemodel'
     #RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_2000_ALL_TRAIN_augmented_iter_2000.caffemodel' # augmented
     #RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_4000_iter_augmented.caffemodel' # augmented
@@ -118,10 +118,10 @@ def loadCNN():
     #RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_no_finetune_original_data_iter_2000.caffemodel'   # RUNNING 1
 
     # finetuned from imagenet
-    RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_with_finetune_original_data_iter_500.caffemodel' # RUNNING 3
+    #RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_with_finetune_original_data_iter_500.caffemodel' # RUNNING 3
     # RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_with_finetune_original_data_iter_1000.caffemodel' # TODO
     # RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_with_finetune_original_data_iter_1500.caffemodel' # TODO
-    # RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_with_finetune_original_data_iter_2000.caffemodel' # RUNNING 2
+    RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_with_finetune_original_data_iter_2000.caffemodel' # RUNNING 2
 
     RGB_singleFrame_net =  caffe.Net(singleFrame_model, RGB_singleFrame, caffe.TEST)
                 

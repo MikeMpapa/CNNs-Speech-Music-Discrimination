@@ -1,5 +1,6 @@
 import argparse,fileinput,os,sys,subprocess
-caffe_root = '../caffe/' #PATH TO CAFFE ROOT
+import os
+caffe_root = '../lisa-caffe-public/' #PATH TO CAFFE ROOT
 sys.path.insert(0,caffe_root + 'python')
 import caffe
 caffe.set_mode_cpu()
@@ -18,11 +19,11 @@ def ParseInputArguments():
    parser.add_argument('max_iter', type = int, help = 'total number of iterations')
    parser.add_argument('--init', help = 'path to pre-trained model')
    parser.add_argument('--init_type', choices = ['fin','res'], help = "fin: for finetuning, res: for resuming training")
-   parser.add_argument('--base_lr', default = 0.01, type = float, help = 'initial learning rate')
+   parser.add_argument('--base_lr', default = 0.001, type = float, help = 'initial learning rate')
    parser.add_argument('--display', default = 20, type = int, help = 'display output every #display iterations')
    parser.add_argument('--test_interval', default = 500 , type = int, help = 'test every #test_interval iterations')
    parser.add_argument('--snapshot', default = 500, type = int, help = 'produce an output every #snapshot iterations')
-   parser.add_argument('--momentum',default = '0.9',  type = float, help = ' weight of the previous update')
+   parser.add_argument('--momentum',default = 0.9,  type = float, help = ' weight of the previous update')
    parser.add_argument('--lr_policy',default = 'step',choices=['step','fixed','exp','inv','multistep','poly','sigmoid'] ,help = 'learning rate decay policy')
    parser.add_argument('--test_iter', default = 75 , type = int, help = 'perform #test_iter iterations when testing')
    parser.add_argument('--stepsize', default = 700 , type = int, help = 'reduce learning rate every #stepsize iterations')
@@ -120,10 +121,8 @@ def train(solver_prototxt_filename, init, init_type):
                      raise ValueError("No specific init_type defined for pre-trained network "+init)
               else:
                      print line,
-      subprocess.call(["chmod", "+x","train_net.sh"])
-      subprocess.call(['./train_net.sh'])
-
-
+      os.system("chmod +x train_net.sh")
+      os.system('./train_net.sh')
 
 if __name__ == "__main__":
     args,solver = ParseInputArguments()

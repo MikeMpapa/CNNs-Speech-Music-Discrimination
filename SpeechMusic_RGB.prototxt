@@ -13,6 +13,7 @@ layer {
     mean_value: 103.939
     mean_value: 116.779
     mean_value: 123.68
+    flow: false
   }
   image_data_param {
     source: "SM_imagenet_1000_noaug_TrainSource.txt"
@@ -36,7 +37,8 @@ layer {
     crop_size: 227
     mean_value: 103.939
     mean_value: 116.779
-    mean_value: 123.68    
+    mean_value: 123.68  
+    flow: false  
   }
   image_data_param {
     source: "SM_imagenet_1000_noaug_TestSource.txt"
