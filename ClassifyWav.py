@@ -11,14 +11,14 @@ import matplotlib.pyplot as plt
 import time
 
 #Load Caffe library
-caffe_root = '../lisa-caffe-public/'
+caffe_root = '../caffe/'
 sys.path.insert(0,caffe_root + 'python')
 import caffe
 caffe.set_mode_cpu()
 
 global RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB 
 
-def initialize_transformer(image_mean, is_flow):
+def initialize_transformer(image_mean):
   shape = (10*16, 3, 227, 227)
   transformer = caffe.io.Transformer({'data': shape})
   channel_mean = np.zeros((3,227,227))
@@ -28,7 +28,7 @@ def initialize_transformer(image_mean, is_flow):
   transformer.set_raw_scale('data', 255)
   transformer.set_channel_swap('data', (2, 1, 0))
   transformer.set_transpose('data', (2, 0, 1))
-  transformer.set_is_flow('data', is_flow)
+  #transformer.set_is_flow('data', is_flow)
   return transformer
 
 def singleFrame_classify_video(signal, net, transformer, with_smoothing):
@@ -103,7 +103,7 @@ def mtCNN_classification(signal, Fs, mtWin, mtStep, RGB_singleFrame_net, SOUND_m
         count += 1              
     return np.array(flagsInd), classesAll, np.array(Ps)
 
-def loadCNN():
+def loadCNN(caffeModelName):
     singleFrame_model = 'SpeechMusic_deploy.prototxt'
     #RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_1000_ALL_TRAIN_iter_1000.caffemodel'
     #RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_2000_ALL_TRAIN_augmented_iter_2000.caffemodel' # augmented
@@ -121,7 +121,11 @@ def loadCNN():
     #RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_with_finetune_original_data_iter_500.caffemodel' # RUNNING 3
     # RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_with_finetune_original_data_iter_1000.caffemodel' # TODO
     # RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_with_finetune_original_data_iter_1500.caffemodel' # TODO
-    RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_with_finetune_original_data_iter_2000.caffemodel' # RUNNING 2
+    #RGB_singleFrame = 'SOUND_snapshots_singleFrame_RGB_ALL_TRAIN_with_finetune_original_data_iter_2000.caffemodel' # RUNNING 2
+    # TODO: 
+    # SM_imagenet_2000_noaug_500.caffemodel
+    # SM_noinit_2000_noaug_500.caffemodel
+    RGB_singleFrame = caffeModelName
 
     RGB_singleFrame_net =  caffe.Net(singleFrame_model, RGB_singleFrame, caffe.TEST)
                 
@@ -132,7 +136,7 @@ def loadCNN():
     SOUND_mean_RGB[2,:,:] = 128.68
 
     #INitialize input image transformer
-    transformer_RGB = initialize_transformer(SOUND_mean_RGB, False)
+    transformer_RGB = initialize_transformer(SOUND_mean_RGB,)
 
     return RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB
 
@@ -361,7 +365,7 @@ def main(argv):
     '''
 
     global RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB
-    RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB = loadCNN()                                    # load the CNN
+    RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB = loadCNN(argv[3])                                    # load the CNN
 
     if argv[1] == "evaluate":
         if os.path.isfile(argv[2]):  

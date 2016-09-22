@@ -1,6 +1,8 @@
 import argparse,fileinput,os,sys,subprocess
 import os
-caffe_root = '../lisa-caffe-public/' #PATH TO CAFFE ROOT
+import random
+#caffe_root = '../lisa-caffe-public/' #PATH TO CAFFE ROOT
+caffe_root = '../caffe/' #PATH TO CAFFE ROOT
 sys.path.insert(0,caffe_root + 'python')
 import caffe
 caffe.set_mode_cpu()
@@ -82,7 +84,8 @@ def ChangeNetworkDataRoots(train,test,ftrain,ftest):
 def  CreateResourceFiles(snapshot_prefix,train,test):
 
     allLabels = list(set(os.listdir(train)+os.listdir(test)))
-
+    StringTrain = []
+    StringTest = []
     # Create Train Source File
     fnameTrain = snapshot_prefix + "_TrainSource.txt"
     train_file = open(fnameTrain, "w")
@@ -91,8 +94,8 @@ def  CreateResourceFiles(snapshot_prefix,train,test):
     	if os.path.exists(datadir):
            trainSamples = os.listdir(datadir)
            for sample in trainSamples:
-        	   train_file.write('/'.join((label,sample))+' '+str(idx)+'\n')
-    train_file.close()
+             StringTrain.append('/'.join((label,sample))+' '+str(idx))
+        	   
 
     # Create Test Source File
     fnameTest = snapshot_prefix + "_TestSource.txt"
@@ -101,8 +104,17 @@ def  CreateResourceFiles(snapshot_prefix,train,test):
     	datadir = "/".join((test,label))
     	if os.path.exists(datadir):
            testSamples = os.listdir(datadir)
-           for sample in testSamples:
-        	   test_file.write('/'.join((label,sample))+' '+str(idx)+'\n')
+           for sample in testSamples:        	   
+             StringTest.append('/'.join((label,sample))+' '+str(idx))
+
+    random.shuffle(StringTrain)
+    random.shuffle(StringTest)
+    for s in StringTrain:      
+      train_file.write(s+'\n')             
+    for s in StringTest:      
+      test_file.write(s+'\n')             
+
+    train_file.close()      
     test_file.close()
     return fnameTrain,fnameTest
 
