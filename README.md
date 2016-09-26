@@ -47,7 +47,7 @@ This project describes a new approach to the very traditional problem of Speech-
 
   * **Train a CNN**
   
-  1. Provide Network Architecture file. You can use the proposed architecture ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ) or another CNN of your choice
+  1. Provide Network Architecture file. You can use the proposed architecture ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ) or another CNN of your choice.
 
 2. Train
  
