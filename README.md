@@ -1,7 +1,7 @@
 # CNNs:Speech-Music-Discrimination
 
 ##Synopsis
-This project describes a new approach to the very traditional problem of Speech-Music Discrimination. According to our knowledge, the proposed method, provides state-of-the-art results on the task. We employ a Deep Convolutional Neural Network (_CNN_) and we offer a compact framework to perform segmentation and binary (Speech/Music) classification. Our method is unchained from traditional audio features, which offer inferior results on the task as shown in (--reference to the paper--). Instead it exploits the highly invariant features produced by CNNs and opperates on pseudocolored RGB frequency-images, which represent wav segments. 
+This project describes a new approach to the very traditional problem of Speech-Music Discrimination. According to our knowledge, the proposed method, provides state-of-the-art results on the task. We employ a Deep Convolutional Neural Network (_CNN_) and we offer a compact framework to perform segmentation and binary (Speech/Music) classification. Our method is unchained from traditional audio features, which offer inferior results on the task as shown in (--reference to the paper--). Instead it exploits the highly invariant features produced by CNNs and opperates on pseudocolored RGB frequency-images, which represent audio segments. 
 
 **The repository consists of the following modules:**
  * Audio segmentation using the [PyAudio](https://github.com/tyiannak/pyAudioAnalysis.git) analysis lybrary
@@ -27,15 +27,17 @@ This project describes a new approach to the very traditional problem of Speech-
 ##Code Description
 
 #### **Data Preparation**
-   1. Convert your wav files into pseudocolored RGB spectrogram images using _generateSpectrograms.py_
-      _TO BE UPDATED a)How to run, b)How to set segmentation parameters c) HOw the output looks like_
+   1. Convert your audio files into pseudocolored RGB spectrogram images using _generateSpectrograms.py_
+      _TO BE UPDATED a)How to run, b)How to set segmentation parameters c) How the output looks like_
 
    2. Split the spectrogram images into train and test as shown in Fig1:
  
    <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train-test.PNG" width="500" height="300">
    <figcaption>Fig1. - Data Structure</figcaption>
 
-    * Train/Test and Classes represent directories whereas Samples represent files
+    * Train/Test and Classes represent directories 
+    
+    * Samples represent files
      
     * Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown in Fig2
     <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg.png" width="227" height="227">
@@ -45,9 +47,9 @@ This project describes a new approach to the very traditional problem of Speech-
 
   * **Train a CNN**
   
-  1. Provide Network Architecture file ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ).
-     You can use any other CNN architecture of your choice. This one is the proposed architecture as described in the paper. 
-  2. Train
+  1. Provide Network Architecture file. You can use the proposed architecture ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ) or another CNN of your choice
+
+2. Train
  
     Training can be done either by training a new network from sratch or by finetuning a pretrained architecture. The pretrained model used in the paper for fine-tuning is the caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000 initially proposed in [Donahue, Jeffrey, et al. "Long-term recurrent convolutional networks for visual recognition and description." Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2015.](http://arxiv.org/abs/1411.4389)
 
