@@ -16,8 +16,13 @@ This project describes a new approach to the very traditional problem of Speech-
 - Dependencies
  1. [PyAudio](https://github.com/tyiannak/pyAudioAnalysis.git) 
  2. [CAFFE Deep-Learning Framework](http://caffe.berkeleyvision.org/installation.html)
+
+ _* Installation instructions offered in detail on the above links_
+
+- Add Caffe to your working dir
+ 1. [trainCNN.py](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/trainCNN.py) --> Line:4
+ 2. [train_net.sh](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train_net.sh) --> Line:2
  
-_* Installation instructions offered in detail on the above links_
 
 ##Code Description
 
