@@ -1,7 +1,6 @@
 import argparse,fileinput,os,sys,subprocess
 import os
 import random
-#caffe_root = '../lisa-caffe-public/' #PATH TO CAFFE ROOT
 caffe_root = '../caffe/' #PATH TO CAFFE ROOT
 sys.path.insert(0,caffe_root + 'python')
 import caffe
