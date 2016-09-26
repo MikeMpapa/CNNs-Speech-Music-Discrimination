@@ -90,7 +90,28 @@ python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 1000 --init caff
 
 ##Contributors
 
-##References
+##References & Citations
+Please use the following citations if you experimented with _CNNs:Speech-Music-Discrimination_ project:
+
+**CNNs:Speech-Music-Discrimination**
+pending....
+
+**PyAudioAnalysis**
+@article{giannakopoulos2015pyaudioanalysis,
+  title={pyAudioAnalysis: An Open-Source Python Library for Audio Signal Analysis},
+  author={Giannakopoulos, Theodoros},
+  journal={PloS one},
+  volume={10},
+  number={12},
+  year={2015},
+  publisher={Public Library of Science}
+}
 
 
-##Cite
+**Caffe Framework**
+@article{jia2014caffe,
+  Author = {Jia, Yangqing and Shelhamer, Evan and Donahue, Jeff and Karayev, Sergey and Long, Jonathan and Girshick, Ross and Guadarrama, Sergio and Darrell, Trevor},
+  Journal = {arXiv preprint arXiv:1408.5093},
+  Title = {Caffe: Convolutional Architecture for Fast Feature Embedding},
+  Year = {2014}
+}
