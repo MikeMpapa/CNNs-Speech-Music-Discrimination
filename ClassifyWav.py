@@ -31,7 +31,7 @@ def initialize_transformer(image_mean):
   #transformer.set_is_flow('data', is_flow)
   return transformer
 
-def singleFrame_classify_video(signal, net, transformer, with_smoothing):
+def singleFrame_classify_video(signal, net, transformer, with_smoothing, classNamesCNN):
     batch_size = 1 
     input_images = []
 
@@ -41,6 +41,7 @@ def singleFrame_classify_video(signal, net, transformer, with_smoothing):
     #Initialize predictions matrix                
     output_predictions = np.zeros((len(input_images),2))
     output_classes = []
+    #print [method for method in dir(net) if callable(getattr(net, method))]    
 
     for i in range(0,len(input_images)):        
         # print "Classifying Spectrogram: ",i+1         
@@ -53,21 +54,18 @@ def singleFrame_classify_video(signal, net, transformer, with_smoothing):
         out = net.forward_all(data=caffe_in) #feed input to the network
         output_predictions[i:i+batch_size] = np.mean(out['probs'].reshape(10,caffe_in.shape[0]/10,2),0) #predict labels        
         
-        #Store predicted Labels without smoothing
-        if  output_predictions[i:i+batch_size].argmax(axis=1)[0] == 0:
-            prediction = "music"
-        else:
-            prediction = "speech"
+        #Store predicted Labels without smoothing        
+        iMAX = output_predictions[i:i+batch_size].argmax(axis=1)[0]
+        prediction = classNamesCNN[iMAX]
         output_classes.append(prediction)
         #print "Predicted Label for file -->  ", signal.upper() ,":",    prediction
     return output_classes, output_predictions
 
-def mtCNN_classification(signal, Fs, mtWin, mtStep, RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB):
+def mtCNN_classification(signal, Fs, mtWin, mtStep, RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB, classNamesCNN):
     mtWin2 = int(mtWin * Fs)
     mtStep2 = int(mtStep * Fs)
     stWin = 0.020
-    stStep = 0.015
-    classesAll =["music", "speech"]
+    stStep = 0.015    
     N = len(signal)
     curPos = 0
     count = 0
@@ -93,10 +91,10 @@ def mtCNN_classification(signal, Fs, mtWin, mtStep, RGB_singleFrame_net, SOUND_m
         scipy.misc.imsave(curFileName, imSpec)
         
         T1 = time.time()
-        output_classes, outputP = singleFrame_classify_video(curFileName, RGB_singleFrame_net, transformer_RGB, False)        
+        output_classes, outputP = singleFrame_classify_video(curFileName, RGB_singleFrame_net, transformer_RGB, False, classNamesCNN)        
         T2 = time.time()
         #print T2 - T1
-        flagsInd.append(classesAll.index(output_classes[0]))
+        flagsInd.append(classNamesCNN.index(output_classes[0]))        
         Ps.append(outputP[0])
         #print flagsInd[-1]
         curPos += mtStep2               
@@ -137,8 +135,11 @@ def loadCNN(caffeModelName):
 
     #INitialize input image transformer
     transformer_RGB = initialize_transformer(SOUND_mean_RGB,)
+    classNamesFileName = caffeModelName
+    classNamesFileName = classNamesFileName[0: classNamesFileName.find("_iter_")] + "_classNames"    
+    classNamesAll = cPickle.load(open(classNamesFileName, 'rb'))
 
-    return RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB
+    return RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB, classNamesAll
 
 def computePreRec(CM, classNames):
     numOfClasses = CM.shape[0]
@@ -184,7 +185,7 @@ def trainMetaClassifier(dirName, outputmodelName, modelName, method = "svm", pos
             WIDTH_SEC = 2.4    
             [Fs, x] = io.readAudioFile(wavFile)                                                                                 # read the WAV
             x = io.stereo2mono(x)
-            [flagsInd, classesAll, P] = mtCNN_classification(x, Fs, WIDTH_SEC, 1.0, RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB)    #  apply the CNN mid-term classifier       
+            [flagsInd, classesAll, P] = mtCNN_classification(x, Fs, WIDTH_SEC, 1.0, RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB, classNamesCNN)    #  apply the CNN mid-term classifier       
             print len(flagsIndGT), P.shape                                                                                        # append the current ground truth labels AND estimated probabilities (either from the CNN or the SVM) on the global arrays
 
             lenF = P.shape[0]
@@ -312,7 +313,7 @@ def evaluateSpeechMusic(fileName, modelName, method = "svm", postProcess = 0, po
             WIDTH_SEC = 2.4    
             [Fs, x] = io.readAudioFile(fileName)
             x = io.stereo2mono(x)
-            [flagsInd, classesAll, CNNprobs] = mtCNN_classification(x, Fs, WIDTH_SEC, 1.0, RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB)            
+            [flagsInd, classesAll, CNNprobs] = mtCNN_classification(x, Fs, WIDTH_SEC, 1.0, RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB, classNamesCNN)            
 
         for i in range(flagsIndGT.shape[0]):
             flagsIndGT[i] = classesAll.index(classesAllGT[flagsIndGT[i]])
@@ -358,16 +359,17 @@ def main(argv):
     '''
     #Segmentation Papameters
     WIDTH_SEC = 2.4    
-    RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB = loadCNN()                                    # load the CNN
+    RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB, classNamesCNN = loadCNN()                                    # load the CNN
     [Fs, x] = io.readAudioFile(argv[1])
     x = io.stereo2mono(x)
-    mtCNN_classification(x, Fs, WIDTH_SEC, 1.0, RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB)
+    mtCNN_classification(x, Fs, WIDTH_SEC, 1.0, RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB, classNamesCNN)
     '''
 
-    global RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB
-    RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB = loadCNN(argv[3])                                    # load the CNN
 
     if argv[1] == "evaluate":
+        global RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB, classNamesCNN
+        RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB, classNamesCNN= loadCNN(argv[3])                                    # load the CNN
+
         if os.path.isfile(argv[2]):  
             CM, classesAll = evaluateSpeechMusic(argv[2], argv[3], argv[4], int(argv[5]), argv[6], True)
             print CM
@@ -417,12 +419,15 @@ def main(argv):
             print "{0:s}\t{1:s}\t{2:s}\t{3:s}".format("", "Rec", "Pre", "F1")
             for ic, c in enumerate(classesAll):
                 print "{0:s}\t{1:.1f}\t{2:.1f}\t{3:.1f}".format(c, 100*Recs[ic], 100*Pres[ic], 100*F1s[ic])
-    elif argv[1] == "trainHMM":
+    elif argv[1] == "trainHMM":        
         if os.path.isdir(argv[2]):
             modelName = argv[5]
             method = argv[4]
             postProcess = int(argv[6])                 
-            hmmModelName = argv[3]       
+            hmmModelName = argv[3]
+            global RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB, classNamesCNN
+            RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB, classNamesCNN = loadCNN(modelName)                                    # load the CNN
+                   
             trainMetaClassifier(argv[2], hmmModelName, modelName, method, postProcess, False)
     elif argv[1] == "trainHMM_features":
         if os.path.isdir(argv[2]):

@@ -1,0 +1,15 @@
+# evaluate SM_imagenet trained on 1000 iterations
+python ClassifyWav.py evaluate data/train/ SM_imagenet_2000_noaug_iter_1000.caffemodel  cnn 0 ""
+python ClassifyWav.py evaluate data/test/ SM_imagenet_2000_noaug_iter_1000.caffemodel  cnn 0 ""
+
+# evaluate SM_imagenet trained on 1000 iterations + medfilt
+python ClassifyWav.py evaluate data/train/ SM_imagenet_2000_noaug_iter_1000.caffemodel  cnn 1 ""
+python ClassifyWav.py evaluate data/test/ SM_imagenet_2000_noaug_iter_1000.caffemodel  cnn 1 ""
+
+# train HMM:
+python ClassifyWav.py trainHMM data/train/ hmm1 cnn SM_imagenet_2000_noaug_iter_1000.caffemodel 1
+python ClassifyWav.py trainHMM data/test/ hmm2 cnn SM_imagenet_2000_noaug_iter_1000.caffemodel 1
+
+# evaluate SM_imagenet trained on 1000 iterations + medfilt + HMM smoothing
+python ClassifyWav.py evaluate data/test/ SM_imagenet_2000_noaug_iter_1000.caffemodel cnn 2 hmm1
+python ClassifyWav.py evaluate data/train/ SM_imagenet_2000_noaug_iter_1000.caffemodel cnn 2 hmm2

@@ -1,6 +1,8 @@
 import argparse,fileinput,os,sys,subprocess
 import os
 import random
+import cPickle
+
 caffe_root = '../caffe/' #PATH TO CAFFE ROOT
 sys.path.insert(0,caffe_root + 'python')
 import caffe
@@ -83,6 +85,7 @@ def ChangeNetworkDataRoots(train,test,ftrain,ftest):
 def  CreateResourceFiles(snapshot_prefix,train,test):
 
     allLabels = list(set(os.listdir(train)+os.listdir(test)))
+    allLabels = sorted(allLabels)
     StringTrain = []
     StringTest = []
     # Create Train Source File
@@ -115,6 +118,7 @@ def  CreateResourceFiles(snapshot_prefix,train,test):
 
     train_file.close()      
     test_file.close()
+    cPickle.dump(allLabels, open(snapshot_prefix + "_classNames", 'wb'))     
     return fnameTrain,fnameTest
 
 # Modify execution file
