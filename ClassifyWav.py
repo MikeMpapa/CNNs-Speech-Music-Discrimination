@@ -99,7 +99,7 @@ def mtCNN_classification(signal, Fs, mtWin, mtStep, RGB_singleFrame_net, SOUND_m
         #print flagsInd[-1]
         curPos += mtStep2               
         count += 1              
-    return np.array(flagsInd), classesAll, np.array(Ps)
+    return np.array(flagsInd), classNamesCNN, np.array(Ps)
 
 def loadCNN(caffeModelName):
     singleFrame_model = 'SpeechMusic_deploy.prototxt'

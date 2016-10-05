@@ -18,6 +18,7 @@ layer {
     source: "SM_imagenet_10000_aug_TrainSource.txt"
     root_folder: "spectrogramsAug/train//"
     batch_size: 128
+    shuffle: true
     new_height: 240
     new_width: 320
   }
