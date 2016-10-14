@@ -61,6 +61,10 @@ python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> 
    ```shell
 python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations> --init <pretrained_network>.caffemodel --init_type fin
 ``` 
+    * Resume Training:
+   ```shell
+python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations> --init <pretrained_network>.solverstate --init_type res
+``` 
     * For more details about modifying other learning parameters (i.e learning rate, step size etc.) type:
     ```shell 
     python trainCNN.py -h
@@ -88,6 +92,11 @@ python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 4000
  
    ```shell
 python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 1000 --init caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000.caffemodel --init_type fin
+``` 
+ * Resume training from pretrained network (_train and test paths are according to Fig1_):
+ 
+   ```shell
+python trainCNN.py SpeechMusic_RGB.prototxt Train Test my_new_Output 2000 --init myOutput.solverstate --init_type res
 ``` 
 
 ##Contributors
