@@ -43,9 +43,12 @@ This project describes a new approach to the very traditional problem of Speech-
     
       1. Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown in Fig2
     <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg.png" width="227" height="227">
-    <figcaption>Fig2. - Sample Spectrogram</figcaption>
+    <figcaption>Fig2. - Sample RGB Spectrogram</figcaption>
     
       2. or grayscale spectrogram images of size 200x200 as shown in Fig3
+      
+         <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg2.png" width="220" height="220">
+    <figcaption>Fig3. - Sample Grayscale Spectrogram</figcaption>
     
       * Image resizing can be done directly using CAFFE framework.
   
@@ -53,15 +56,15 @@ This project describes a new approach to the very traditional problem of Speech-
 
   * **Train a CNN**
   
-  1. Provide Network Architecture file. You can use one of the proposed architectures ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ) or another CNN of your choice.
+  1. Provide Network Architecture file. You can use one of the proposed architectures ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt), [_SpeechMusic\_GRAY.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_Gray.prototxt) ) or another CNN of your choice.
 
 2. Train
  
     Training can be done either by training a new network from sratch or by finetuning a pretrained architecture. 
     
-    The pretrained model used in the paper for fine-tuning is the caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000 initially proposed in [Donahue, Jeffrey, et al. "Long-term recurrent convolutional networks for visual recognition and description." Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2015.](http://arxiv.org/abs/1411.4389). To exploit the weight initialization of the pretrained model use the CNN architecture shown in ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ). 
+    The pretrained model used in the paper for fine-tuning is the caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000 initially proposed in [Donahue, Jeffrey, et al. "Long-term recurrent convolutional networks for visual recognition and description." Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2015](http://arxiv.org/abs/1411.4389). To exploit the weight initialization of the pretrained model use the CNN architecture shown in [_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt). 
     
-    If you wish to deploy the smaller CNN architecture that operates on grayscale images you should use the CNN architecture shown in .... This model was trained from scratch without weight initialization. 
+    If you wish to deploy the smaller CNN architecture that operates on grayscale images you should use the CNN architecture shown in [_SpeechMusic\_GRAY.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_Gray.prototxt). This model was trained from scratch without weight initialization. 
 
     * Train from scratch:
    ```shell
