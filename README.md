@@ -126,3 +126,13 @@ pending....
   Title = {Caffe: Convolutional Architecture for Fast Feature Embedding},
   Year = {2014}
 }
+-----------------------------------------------------------------------------------------------------------------------------
+If you used the pretrained network _caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000_ for your experiments, please also cite:
+
+@inproceedings{donahue2015long,
+  title={Long-term recurrent convolutional networks for visual recognition and description},
+  author={Donahue, Jeffrey and Anne Hendricks, Lisa and Guadarrama, Sergio and Rohrbach, Marcus and Venugopalan, Subhashini and Saenko, Kate and Darrell, Trevor},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  pages={2625--2634},
+  year={2015}
+}
