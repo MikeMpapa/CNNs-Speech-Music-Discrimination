@@ -1,7 +1,7 @@
 # CNNs:Speech-Music-Discrimination
 
 ##Synopsis
-This project describes a new approach to the very traditional problem of Speech-Music Discrimination. According to our knowledge, the proposed method, provides state-of-the-art results on the task. We employ a Deep Convolutional Neural Network (_CNN_) and we offer a compact framework to perform segmentation and binary (Speech/Music) classification. Our method is unchained from traditional audio features, which offer inferior results on the task as shown in (--reference to the paper--). Instead it exploits the highly invariant features produced by CNNs and opperates on pseudocolored RGB frequency-images, which represent audio segments. 
+This project describes a new approach to the very traditional problem of Speech-Music Discrimination. According to our knowledge, the proposed method, provides state-of-the-art results on the task. We employ a Deep Convolutional Neural Network (_CNN_) and we offer a compact framework to perform segmentation and binary (Speech/Music) classification. Our method is unchained from traditional audio features, which offer inferior results on the task as shown in (--reference to the paper--). Instead it exploits the highly invariant features produced by CNNs and opperates on pseudocolored RGB or grayscale frequency-images, which represent audio segments. 
 
 **The repository consists of the following modules:**
  * Audio segmentation using the [PyAudio](https://github.com/tyiannak/pyAudioAnalysis.git) analysis lybrary
@@ -27,7 +27,7 @@ This project describes a new approach to the very traditional problem of Speech-
 ##Code Description
 
 #### **Data Preparation**
-   1. Convert your audio files into pseudocolored RGB spectrogram images using _generateSpectrograms.py_
+   1. Convert your audio files into pseudocolored RGB or grayscale spectrogram images using _generateSpectrograms.py_
       _TO BE UPDATED a)How to run, b)How to set segmentation parameters c) How the output looks like_
 
    2. Split the spectrogram images into train and test as shown in Fig1:
@@ -39,19 +39,29 @@ This project describes a new approach to the very traditional problem of Speech-
     
     * Samples represent files
      
-    * Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown in Fig2
+    * If you wish to use the architecture proposed in this work:
+    
+      1. Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown in Fig2
     <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg.png" width="227" height="227">
     <figcaption>Fig2. - Sample Spectrogram</figcaption>
+    
+      2. or grayscale spectrogram images of size 200x200 as shown in Fig3
+    
+      * Image resizing can be done directly using CAFFE framework.
   
 #### **Training** 
 
   * **Train a CNN**
   
-  1. Provide Network Architecture file. You can use the proposed architecture ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ) or another CNN of your choice.
+  1. Provide Network Architecture file. You can use one of the proposed architectures ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ) or another CNN of your choice.
 
 2. Train
  
-    Training can be done either by training a new network from sratch or by finetuning a pretrained architecture. The pretrained model used in the paper for fine-tuning is the caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000 initially proposed in [Donahue, Jeffrey, et al. "Long-term recurrent convolutional networks for visual recognition and description." Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2015.](http://arxiv.org/abs/1411.4389)
+    Training can be done either by training a new network from sratch or by finetuning a pretrained architecture. 
+    
+    The pretrained model used in the paper for fine-tuning is the caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000 initially proposed in [Donahue, Jeffrey, et al. "Long-term recurrent convolutional networks for visual recognition and description." Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2015.](http://arxiv.org/abs/1411.4389). To exploit the weight initialization of the pretrained model use the CNN architecture shown in ([_SpeechMusic\_RGB.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_RGB.prototxt) ). 
+    
+    If you wish to deploy the smaller CNN architecture that operates on grayscale images you should use the CNN architecture shown in .... This model was trained from scratch without weight initialization. 
 
     * Train from scratch:
    ```shell
@@ -60,6 +70,10 @@ python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> 
     * Finetune pretrained network:
    ```shell
 python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations> --init <pretrained_network>.caffemodel --init_type fin
+``` 
+    * Resume Training:
+   ```shell
+python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations> --init <pretrained_network>.solverstate --init_type res
 ``` 
     * For more details about modifying other learning parameters (i.e learning rate, step size etc.) type:
     ```shell 
@@ -89,8 +103,22 @@ python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 4000
    ```shell
 python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 1000 --init caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000.caffemodel --init_type fin
 ``` 
+ * Resume training from pretrained network (_train and test paths are according to Fig1_):
+ 
+   ```shell
+python trainCNN.py SpeechMusic_RGB.prototxt Train Test my_new_Output 2000 --init myOutput.solverstate --init_type res
+``` 
 
-##Contributors
+##Coclusions
+We provide a new method for the task of Speech/Music Discrimination using Convolutional Neural Networks.
+The main contributions of this work are the following:
+
+1. A compact framework for:
+       * Segmenting and Classifying long audio streams into Speech and Music segments.
+       * Train new CNN models on binary audio tasks
+2. A big dataset on long audio streams (more than 10h) for the task of speech music discrimination. The dataset is provided in the form of spectrograms.
+
+3. Two different pretrained CNN architectures that can be used for weight initialization for other binary classification tasks. 
 
 ##References & Citations
 Please use the following citations if you experimented with _CNNs:Speech-Music-Discrimination_ project:
@@ -116,4 +144,14 @@ pending....
   Journal = {arXiv preprint arXiv:1408.5093},
   Title = {Caffe: Convolutional Architecture for Fast Feature Embedding},
   Year = {2014}
+}
+
+If you used the pretrained network **_caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000_**  for your experiments, please also cite:
+
+@inproceedings{donahue2015long,
+  title={Long-term recurrent convolutional networks for visual recognition and description},
+  author={Donahue, Jeffrey and Anne Hendricks, Lisa and Guadarrama, Sergio and Rohrbach, Marcus and Venugopalan, Subhashini and Saenko, Kate and Darrell, Trevor},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  pages={2625--2634},
+  year={2015}
 }

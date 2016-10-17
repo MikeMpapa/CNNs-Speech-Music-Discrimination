@@ -136,9 +136,9 @@ def loadCNN(caffeModelName):
     #INitialize input image transformer
     transformer_RGB = initialize_transformer(SOUND_mean_RGB,)
     classNamesFileName = caffeModelName
-    classNamesFileName = classNamesFileName[0: classNamesFileName.find("_iter_")] + "_classNames"    
+    classNamesFileName = classNamesFileName[0: classNamesFileName.find("_iter_")] + "_classNames"        
     classNamesAll = cPickle.load(open(classNamesFileName, 'rb'))
-
+    classNamesAll = [c.lower() for c in classNamesAll]
     return RGB_singleFrame_net, SOUND_mean_RGB, transformer_RGB, classNamesAll
 
 def computePreRec(CM, classNames):
