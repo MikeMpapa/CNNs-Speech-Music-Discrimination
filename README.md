@@ -22,6 +22,7 @@ This project describes a new approach to the very traditional problem of Speech-
 - Add Caffe to your working dir
  1. [trainCNN.py](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/trainCNN.py) --> Line:4
  2. [train_net.sh](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train_net.sh) --> Line:2
+ 3. [ClassifyWav.py](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/ClassifyWav.py) --> Line:14
  
 
 ##Code Description
