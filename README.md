@@ -10,7 +10,7 @@ This project describes a new approach to the very traditional problem of Speech-
   * CNNs
   * CNNs + median_filtering 
   * CNNs + median_filtering + HMMs
- * A pretrained CNN for the task of Speech/Music Discrimination. The network can be also used for weight initialization for other similar tasks. 
+ * Two pretrained CNNs on the task of Speech/Music Discrimination. The network can be also used for weight initialization for other similar tasks. 
 
 ##Installation
 - Dependencies
