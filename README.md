@@ -32,7 +32,7 @@ This project describes a new approach to the very traditional problem of Speech-
     1. ```cd ~ ``` to navigate to your home directory
     2.   ```ls -a ``` to see the file listed
     3. ```nano .bashrc ``` to open the file in terminal
-    4. scroll at the botom of the file and add: 
+    4. scroll at the bottom of the file and add: 
     
        export PYTHONPATH=$PYTHONPATH:"/home/--myPathToCaffe--/caffe/python"
        
