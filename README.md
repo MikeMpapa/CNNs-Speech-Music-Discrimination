@@ -25,6 +25,22 @@ This project describes a new approach to the very traditional problem of Speech-
  2. [train_net.sh](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train_net.sh) --> Line:2
  3. [ClassifyWav.py](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/ClassifyWav.py) --> Line:14
  
+ **or add pycaffe to your .bashrc for directory independent access**
+ 
+ * open .bashrc file located at your home directory 
+   In a terminal type:
+    1. ```cd ~ ``` to navigate to your home directory
+    2.   ```ls -a ``` to see the file listed
+    3. ```nano .bashrc ``` to open the file in terminal
+    4. scroll at the botom of the file and add: 
+    
+       export PYTHONPATH=$PYTHONPATH:"/home/--myPathToCaffe--/caffe/python"
+       
+       , where _--myPathToCaffe--_ is the path to the caffe library as it appears in your local machine
+       
+       i.e.: export PYTHONPATH=$PYTHONPATH:"/home/michalis/Liraries/caffe/python"
+    5.  ```source ~/.bashrc``` to update your source file    
+
 
 ##Code Description
 
