@@ -10,8 +10,8 @@ This project describes a new approach to the very traditional problem of Speech-
   * CNNs
   * CNNs + median_filtering 
   * CNNs + median_filtering + HMMs
- * Two pretrained CNNs on the task of Speech/Music Discrimination. The network can be also used for weight initialization for other similar tasks. 
- * An audio dataset consisting of more than 10h continous audio streams. At this point the data are available in the form of spectrograms.
+ * Two pretrained CNNs on the task of Speech/Music Discrimination. The network can be also used for weight initialization for other similar tasks. (_to be added_)
+ * An audio dataset consisting of more than 10h continous audio streams. At this point the data are available in the form of spectrograms. (_to be added_)
 
 ##Installation
 - Dependencies
