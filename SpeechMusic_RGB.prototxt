@@ -15,8 +15,8 @@ layer {
     mean_value: 123.68
   }
   image_data_param {
-    source: "SM_imagenet_10000_aug_TrainSource.txt"
-    root_folder: "spectrogramsAug/train//"
+    source: "SM_noinit_5000_TrainSource.txt"
+    root_folder: "speechMusicSpectrograms/Train//"
     batch_size: 128
     shuffle: true
     new_height: 240
@@ -40,8 +40,8 @@ layer {
     mean_value: 123.68  
   }
   image_data_param {
-    source: "SM_imagenet_10000_aug_TestSource.txt"
-    root_folder: "spectrogramsAug/test//"
+    source: "SM_noinit_5000_TestSource.txt"
+    root_folder: "speechMusicSpectrograms/Test//"
     batch_size: 128
     new_height: 240
     new_width: 320
