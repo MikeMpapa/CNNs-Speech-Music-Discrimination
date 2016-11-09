@@ -3,7 +3,7 @@ import os
 import random
 import cPickle
 
-caffe_root = '../caffe/' #PATH TO CAFFE ROOT
+caffe_root = '../../caffe/' #PATH TO CAFFE ROOT
 sys.path.insert(0,caffe_root + 'python')
 import caffe
 caffe.set_mode_cpu()
