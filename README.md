@@ -145,22 +145,22 @@ python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 1000 --init caff
    ```shell
 python trainCNN.py SpeechMusic_RGB.prototxt Train Test my_new_Output 2000 --init myOutput.solverstate --init_type res
 ``` 
-* Evaluate trained CNN on .wav file/s _without preprosesing_:
+ * Evaluate trained CNN on .wav file/s _without preprosesing_:
  
    ```shell
 python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel  cnn 0 ""
 ``` 
-* Evaluate trained CNN on .wav file/s _with preprosesing_:
+ * Evaluate trained CNN on .wav file/s _with preprosesing_:
  
    ```shell
 python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel  cnn 1 ""
 ``` 
-* Train an HMM after applying median filtering:
+ * Train an HMM after applying median filtering:
  
    ```shell
 python ClassifyWav.py trainHMM Data/testWavs hmm1 cnn CNN-SM-5000.caffemodel 1
 ``` 
-* Test using pretrained HMM:
+ * Test using pretrained HMM:
  
    ```shell
 python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel cnn 2 hmm1
