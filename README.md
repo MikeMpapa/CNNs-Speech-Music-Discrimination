@@ -107,10 +107,26 @@ python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> 
          Full paths to training and test samples with each samples class
      
   * **Train HMM**
-  
-     **TO BE UPDATED**
+   ```shell
+python ClassifyWav.py trainHMM <path_to_test_data> <hmm_model_name> <core_classification_method> <trained_network> <classification_method>
+``` 
+      *This applies after having a trained CNN
 
-####  **Classification**
+      **Change [trainCNN.py](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/trainCNN.py), Line:9, to  ``` caffe.set_mode_gpu() ```  to support GPU implementation** 
+
+####  **Classification** 
+
+* Evaluate trained CNN Model with/without post processing:
+ 
+```shell
+python ClassifyWav.py evaluate <path_to_test_wav_files> <trained_network>.caffemodel  <classification_method> <classification_type_flag> ""
+``` 
+* Evaluate trained HMM Model with post processing:
+ 
+```shell
+python ClassifyWav.py evaluate <path_to_test_wav_files> <trained_network>-5000.caffemodel <core_classification_method> <classification_type_flag> <hmm_model_name>
+``` 
+**Change [ClassifyWav.py](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/ClassifyWav.py), Line:17, to  ``` caffe.set_mode_gpu() ```  to support GPU implementation** 
 
 ##Code Example
  * Generate Spectrogram Images:
@@ -128,6 +144,26 @@ python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 1000 --init caff
  
    ```shell
 python trainCNN.py SpeechMusic_RGB.prototxt Train Test my_new_Output 2000 --init myOutput.solverstate --init_type res
+``` 
+* Evaluate trained CNN on .wav file/s _without preprosesing_:
+ 
+   ```shell
+python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel  cnn 0 ""
+``` 
+* Evaluate trained CNN on .wav file/s _with preprosesing_:
+ 
+   ```shell
+python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel  cnn 1 ""
+``` 
+* Train an HMM after applying median filtering:
+ 
+   ```shell
+python ClassifyWav.py trainHMM Data/testWavs hmm1 cnn CNN-SM-5000.caffemodel 1
+``` 
+* Test using pretrained HMM:
+ 
+   ```shell
+python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel cnn 2 hmm1
 ``` 
 
 ##Coclusions
