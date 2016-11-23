@@ -3,10 +3,11 @@ import os
 import random
 import cPickle
 
-caffe_root = '../../caffe/' #PATH TO CAFFE ROOT
-sys.path.insert(0,caffe_root + 'python')
-import caffe
-caffe.set_mode_cpu()
+#caffe_root = '../../caffe/' #PATH TO CAFFE ROOT
+#sys.path.insert(0,caffe_root + 'python')
+#import caffe
+#caffe.set_device(0)
+#caffe.set_mode_gpu()
 
 
 
@@ -26,6 +27,7 @@ def ParseInputArguments():
    parser.add_argument('--display', default = 20, type = int, help = 'display output every #display iterations')
    parser.add_argument('--test_interval', default = 500 , type = int, help = 'test every #test_interval iterations')
    parser.add_argument('--snapshot', default = 500, type = int, help = 'produce an output every #snapshot iterations')
+   parser.add_argument('--type', default = 'SGD', choices = ['SGD','AdaDelta','AdaGrad','Adam','Nesterov','RMSProp'], help = 'back-propagation algorithm')
    parser.add_argument('--momentum',default = 0.9,  type = float, help = ' weight of the previous update')
    parser.add_argument('--lr_policy',default = 'step',choices=['step','fixed','exp','inv','multistep','poly','sigmoid'] ,help = 'learning rate decay policy')
    parser.add_argument('--test_iter', default = 75 , type = int, help = 'perform #test_iter iterations when testing')
@@ -33,18 +35,24 @@ def ParseInputArguments():
    parser.add_argument('--gamma',  default = 0.1, type = float, help = 'reduce learning rate to an order of #gamma')
    parser.add_argument('--weight_decay', default = 0.005, type = float, help = 'regularization term of the neural net')
    parser.add_argument('--solver_mode', default = 'CPU', choices = ['CPU','GPU'], help = 'where to run the program')
-   parser.add_argument('--device_id', default = 0, type = int, choices=[0,1], help = '0:for CPU, 1: for GPU')
+   #parser.add_argument('--device_id', default = 0, type = int, choices=[0,1], help = '0:for CPU, 1: for GPU')
    args = parser.parse_args()
    solver = PrintSolverSetup(args)
    return args,solver
 
 #Create the solver file .- Solver file works also as a descriptor for the experiment. -Extra information is written as comment
 def PrintSolverSetup(args):   
+   mode = 0
    solver = args.snapshot_prefix+"_solver.prototxt"
    print "Export experiment parameters to solver file:",solver
    fsetup = open(args.snapshot_prefix+"_solver.prototxt", 'w')
    for arg in vars(args):
-     print arg, getattr(args, arg)
+     if arg is 'type':
+        if str(getattr(args, arg)) == "AdaGrad":
+		mode=1
+     print mode,arg
+     if mode==1 and arg is 'momentum':
+	continue	
      if arg in ['init','train','test','init_type']:
         fsetup.write('#')
      if (type(getattr(args, arg)) is str) and arg is not 'solver_mode':
