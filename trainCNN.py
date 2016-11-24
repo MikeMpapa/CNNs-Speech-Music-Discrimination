@@ -35,6 +35,7 @@ def ParseInputArguments():
    parser.add_argument('--gamma',  default = 0.1, type = float, help = 'reduce learning rate to an order of #gamma')
    parser.add_argument('--weight_decay', default = 0.005, type = float, help = 'regularization term of the neural net')
    parser.add_argument('--solver_mode', default = 'CPU', choices = ['CPU','GPU'], help = 'where to run the program')
+   parser.add_argument('--batch_size', default = 128, type = int, help = 'size of input batch')
    #parser.add_argument('--device_id', default = 0, type = int, choices=[0,1], help = '0:for CPU, 1: for GPU')
    args = parser.parse_args()
    solver = PrintSolverSetup(args)
@@ -50,10 +51,9 @@ def PrintSolverSetup(args):
      if arg is 'type':
         if str(getattr(args, arg)) == "AdaGrad":
 		mode=1
-     print mode,arg
      if mode==1 and arg is 'momentum':
 	continue	
-     if arg in ['init','train','test','init_type']:
+     if arg in ['init','train','test','init_type','batch_size']:
         fsetup.write('#')
      if (type(getattr(args, arg)) is str) and arg is not 'solver_mode':
 	fsetup.write(arg +': "'+ str(getattr(args, arg))+'"\n')
@@ -67,7 +67,7 @@ def PrintSolverSetup(args):
 
 
 #Change paths to training and  test data to the NETWORK.prototxt file
-def ChangeNetworkDataRoots(train,test,ftrain,ftest):
+def ChangeNetworkDataRoots(train,test,ftrain,ftest,batch_size):
    
    for line in fileinput.input(args.net, inplace=True):
    	tmp = line.split(':')
@@ -85,7 +85,11 @@ def ChangeNetworkDataRoots(train,test,ftrain,ftest):
    			print initstring+": \""+train+'/\"\n',
    		else:
    			print initstring+": \""+test+'/\"\n',
+   		continue
+	if tmp[0].strip() =='batch_size':   		
+   		print initstring+":"+ str(batch_size)+"\n",
    		continue	
+
    	print line,	
    	   
 
@@ -150,6 +154,7 @@ def train(solver_prototxt_filename, init, init_type):
 if __name__ == "__main__":
     args,solver = ParseInputArguments()
     ftrain,ftest = CreateResourceFiles(args.snapshot_prefix,args.train,args.test)
-    ChangeNetworkDataRoots(args.train,args.test,ftrain,ftest)
+    ChangeNetworkDataRoots(args.train,args.test,ftrain,ftest,args.batch_size)
     train(solver,args.init,args.init_type)
    
+
