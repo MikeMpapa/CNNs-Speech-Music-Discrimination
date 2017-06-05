@@ -1,6 +1,6 @@
 # CNNs:Speech-Music-Discrimination
 
-##Synopsis
+## Synopsis
 This project describes a new approach to the very traditional problem of Speech-Music Discrimination. According to our knowledge, the proposed method, provides state-of-the-art results on the task. We employ a Deep Convolutional Neural Network (_CNN_) and we offer a compact framework to perform segmentation and binary (Speech/Music) classification. Our method is unchained from traditional audio features, which offer inferior results on the task as shown in (--reference to the paper--). Instead it exploits the highly invariant features produced by CNNs and opperates on pseudocolored RGB or grayscale frequency-images, which represent audio segments. 
 
 **The repository consists of the following modules:**
@@ -13,7 +13,7 @@ This project describes a new approach to the very traditional problem of Speech-
  * Two pretrained CNNs on the task of Speech/Music Discrimination. The network can be also used for weight initialization for other similar tasks. (_to be added_)
  * An audio dataset consisting of more than 10h continous audio streams. At this point the data are available in the form of spectrograms. (_to be added_)
 
-##Installation
+## Installation
 - Dependencies
  1. [PyAudio](https://github.com/tyiannak/pyAudioAnalysis.git) 
  2. [CAFFE Deep-Learning Framework](http://caffe.berkeleyvision.org/installation.html)
@@ -42,7 +42,7 @@ This project describes a new approach to the very traditional problem of Speech-
     5.  ```source ~/.bashrc``` to update your source file    
 
 
-##Code Description
+## Code Description
 
 #### **Data Preparation**
    1. Convert your audio files into pseudocolored RGB or grayscale spectrogram images using _generateSpectrograms.py_
@@ -128,45 +128,44 @@ python ClassifyWav.py evaluate <path_to_test_wav_files> <trained_network>-5000.c
 ``` 
 **Change [ClassifyWav.py](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/ClassifyWav.py), Line:17, to  ``` caffe.set_mode_gpu() ```  to support GPU implementation** 
 
-##Code Example
+## Code Example
  * Generate Spectrogram Images:
  * Train from scratch:
- 
    ```shell
 python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 4000
 ```
+
  * Finetune pretrained network (_train and test paths are according to Fig1_):
- 
    ```shell
 python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 1000 --init caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000.caffemodel --init_type fin
 ``` 
+
  * Resume training from pretrained network (_train and test paths are according to Fig1_):
- 
    ```shell
 python trainCNN.py SpeechMusic_RGB.prototxt Train Test my_new_Output 2000 --init myOutput.solverstate --init_type res
 ``` 
+
  * Evaluate trained CNN on .wav file/s _without preprosesing_:
- 
    ```shell
 python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel  cnn 0 ""
 ``` 
+
  * Evaluate trained CNN on .wav file/s _with preprosesing_:
- 
    ```shell
 python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel  cnn 1 ""
 ``` 
+
  * Train an HMM after applying median filtering:
- 
    ```shell
 python ClassifyWav.py trainHMM Data/testWavs hmm1 cnn CNN-SM-5000.caffemodel 1
 ``` 
+
  * Test using pretrained HMM:
- 
    ```shell
 python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel cnn 2 hmm1
 ``` 
 
-##Coclusions
+## Coclusions
 We provide a new method for the task of Speech/Music Discrimination using Convolutional Neural Networks.
 The main contributions of this work are the following:
 
@@ -177,7 +176,7 @@ The main contributions of this work are the following:
 
 3. Two different pretrained CNN architectures that can be used for weight initialization for other binary classification tasks. 
 
-##References & Citations
+## References & Citations
 Please use the following citations if you experimented with _CNNs:Speech-Music-Discrimination_ project:
 
 **CNNs:Speech-Music-Discrimination**
