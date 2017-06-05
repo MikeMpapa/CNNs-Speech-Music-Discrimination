@@ -85,21 +85,14 @@ This project describes a new approach to the very traditional problem of Speech-
     If you wish to deploy the smaller CNN architecture that operates on grayscale images you should use the CNN architecture shown in [_SpeechMusic\_GRAY.prototxt_](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/SpeechMusic_Gray.prototxt). This model was trained from scratch without weight initialization. 
 
     * Train from scratch:
-   ```shell
-python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations>
-``` 
+   ```shell python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations> ``` 
     * Finetune pretrained network:
-   ```shell
-python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations> --init <pretrained_network>.caffemodel --init_type fin
-``` 
+   ```shell python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations> --init <pretrained_network>.caffemodel --init_type fin ``` 
     * Resume Training:
-   ```shell
-python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations> --init <pretrained_network>.solverstate --init_type res
-``` 
+   ```shell python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> <path_to_test_data_root_foler> <snapshot_prefix> <total_number_of_iterations> --init <pretrained_network>.solverstate --init_type res ``` 
     * For more details about modifying other learning parameters (i.e learning rate, step size etc.) type:
-    ```shell 
-    python trainCNN.py -h
-    ``` 
+    ```shell python trainCNN.py -h ``` 
+    
   3. Outputs:
      1. _\<snapshot_prefix\>_solver.prototxt_
          Solver file required by caffe to train the CNN. The solver file describes all the parameters of the current experients. Commented lines have additional information regarding the experiments that are not required by the Caffe framework.
@@ -107,9 +100,7 @@ python trainCNN.py <architecture_file>.prototxt <path_to_train_data_root_foler> 
          Full paths to training and test samples with each samples class
      
   * **Train HMM**
-   ```shell
-python ClassifyWav.py trainHMM <path_to_test_data> <hmm_model_name> <core_classification_method> <trained_network> <classification_method>
-``` 
+   ```shell python ClassifyWav.py trainHMM <path_to_test_data> <hmm_model_name> <core_classification_method> <trained_network> <classification_method> ``` 
       *This applies after having a trained CNN
 
       **Change [trainCNN.py](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/trainCNN.py), Line:9, to  ``` caffe.set_mode_gpu() ```  to support GPU implementation** 
@@ -118,54 +109,51 @@ python ClassifyWav.py trainHMM <path_to_test_data> <hmm_model_name> <core_classi
 
 * Evaluate trained CNN Model with/without post processing:
  
-```shell
-python ClassifyWav.py evaluate <path_to_test_wav_files> <trained_network>.caffemodel  <classification_method> <classification_type_flag> ""
-``` 
+```shell python ClassifyWav.py evaluate <path_to_test_wav_files> <trained_network>.caffemodel  <classification_method> <classification_type_flag> "" ``` 
 * Evaluate trained HMM Model with post processing:
  
-```shell
-python ClassifyWav.py evaluate <path_to_test_wav_files> <trained_network>-5000.caffemodel <core_classification_method> <classification_type_flag> <hmm_model_name>
-``` 
+```shell python ClassifyWav.py evaluate <path_to_test_wav_files> <trained_network>-5000.caffemodel <core_classification_method> <classification_type_flag> <hmm_model_name> ``` 
+
 **Change [ClassifyWav.py](https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/ClassifyWav.py), Line:17, to  ``` caffe.set_mode_gpu() ```  to support GPU implementation** 
 
 ## Code Example
  * Generate Spectrogram Images:
  * Train from scratch:
    ```shell
-python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 4000
-```
+   python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 4000 
+   ```
 
  * Finetune pretrained network (_train and test paths are according to Fig1_):
-   ```shell
-python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 1000 --init caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000.caffemodel --init_type fin
-``` 
+   ```shell 
+   python trainCNN.py SpeechMusic_RGB.prototxt Train Test myOutput 1000 --init caffe_imagenet_hyb2_wr_rc_solver_sqrt_iter_310000.caffemodel --init_type fin
+   ``` 
 
  * Resume training from pretrained network (_train and test paths are according to Fig1_):
-   ```shell
-python trainCNN.py SpeechMusic_RGB.prototxt Train Test my_new_Output 2000 --init myOutput.solverstate --init_type res
-``` 
+   ```shell 
+   python trainCNN.py SpeechMusic_RGB.prototxt Train Test my_new_Output 2000 --init myOutput.solverstate --init_type res 
+   ``` 
 
  * Evaluate trained CNN on .wav file/s _without preprosesing_:
-   ```shell
-python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel  cnn 0 ""
-``` 
+   ```shell 
+   python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel  cnn 0 "" 
+   ``` 
 
  * Evaluate trained CNN on .wav file/s _with preprosesing_:
-   ```shell
-python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel  cnn 1 ""
-``` 
+   ```shell 
+   python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel  cnn 1 "" 
+   ``` 
 
  * Train an HMM after applying median filtering:
-   ```shell
-python ClassifyWav.py trainHMM Data/testWavs hmm1 cnn CNN-SM-5000.caffemodel 1
-``` 
+   ```shell 
+   python ClassifyWav.py trainHMM Data/testWavs hmm1 cnn CNN-SM-5000.caffemodel 1 
+   ``` 
 
  * Test using pretrained HMM:
-   ```shell
-python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel cnn 2 hmm1
-``` 
+   ```shell 
+   python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel cnn 2 hmm1 
+   ``` 
 
-## Coclusions
+## Conclusions
 We provide a new method for the task of Speech/Music Discrimination using Convolutional Neural Networks.
 The main contributions of this work are the following:
 
