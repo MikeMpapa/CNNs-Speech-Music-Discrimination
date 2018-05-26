@@ -179,6 +179,8 @@ The main contributions of this work are the following:
 
 3. Two different pretrained CNN architectures that can be used for weight initialization for other binary classification tasks. 
 
+4. To our knowledge our method provides state-of-the-art results on the task
+
 ## References & Citations
 If your found our project usefull please cite the following referenced  publications:
 
