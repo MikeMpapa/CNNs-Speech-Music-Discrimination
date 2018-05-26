@@ -60,14 +60,13 @@ This project describes a new approach to the very traditional problem of Speech-
    1. Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown in Fig2
     <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg.png" width="227" height="227">
     
-   <figcaption>Fig2. - Sample RGB Spectrogram</figcaption>
-    <br />
+   <figcaption>Fig2. - Sample RGB Spectrogram</figcaption> <br />
    2. or grayscale spectrogram images of size 200x200 as shown in Fig3
     <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg2.png" width="220" height="220">
     
-   <figcaption>Fig3. - Sample Grayscale Spectrogram</figcaption>
+   <figcaption>Fig3. - Sample Grayscale Spectrogram</figcaption>  <br />
     
-   <br /> 
+    
    
    * Image resizing can be done directly using CAFFE framework.
   
@@ -181,10 +180,17 @@ The main contributions of this work are the following:
 3. Two different pretrained CNN architectures that can be used for weight initialization for other binary classification tasks. 
 
 ## References & Citations
-Please use the following citations if you experimented with _CNNs:Speech-Music-Discrimination_ project:
+If your found our project usefull please cite the following referenced  publications:
 
 **CNNs:Speech-Music-Discrimination**
-pending....
+@article{papakostas2018speech,
+  title={Speech-Music Discrimination Using Deep Visual Feature Extractors},
+  author={Papakostas, Michalis and Giannakopoulos, Theodoros},
+  journal={Expert Systems with Applications},
+  year={2018},
+  publisher={Elsevier}
+}
+
 
 **PyAudioAnalysis**
 @article{giannakopoulos2015pyaudioanalysis,
