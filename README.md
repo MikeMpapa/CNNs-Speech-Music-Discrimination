@@ -52,23 +52,20 @@ This project describes a new approach to the very traditional problem of Speech-
  
    <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/train-test.PNG" width="500" height="300">
    <figcaption>Fig1. - Data Structure</figcaption>
-
-    * Train/Test and Classes represent directories 
     
-    * Samples represent files
-     
-    * If you wish to use the architecture proposed in this work:
+   * Train/Test and Classes represent directories 
+   * Samples represent files
+   * If you wish to use the architecture proposed in this work:
     
       1. Data should be pseudo-colored RGB spectrogram images of size 227x227 as shown in Fig2
     <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg.png" width="227" height="227">
     <figcaption>Fig2. - Sample RGB Spectrogram</figcaption>
     
-      2. or grayscale spectrogram images of size 200x200 as shown in Fig3
-      
+   2. or grayscale spectrogram images of size 200x200 as shown in Fig3
          <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg2.png" width="220" height="220">
     <figcaption>Fig3. - Sample Grayscale Spectrogram</figcaption>
     
-      * Image resizing can be done directly using CAFFE framework.
+   * Image resizing can be done directly using CAFFE framework.
   
 #### **Training** 
 
