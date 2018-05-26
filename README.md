@@ -63,10 +63,11 @@ This project describes a new approach to the very traditional problem of Speech-
    <figcaption>Fig2. - Sample RGB Spectrogram</figcaption>
     
       
-  2. or grayscale spectrogram images of size 200x200 as shown in Fig3
-   <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg2.png" width="220" height="220">
+   2. or grayscale spectrogram images of size 200x200 as shown in Fig3
+    <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/sampleIMg2.png" width="220" height="220">
     
    <figcaption>Fig3. - Sample Grayscale Spectrogram</figcaption>
+    
     
    * Image resizing can be done directly using CAFFE framework.
   
