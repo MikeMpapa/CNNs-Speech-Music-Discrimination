@@ -168,7 +168,7 @@ python ClassifyWav.py evaluate <path_to_test_wav_files> <trained_network>-5000.c
    python ClassifyWav.py evaluate Data/testWavs CNN-SM-5000.caffemodel cnn 2 hmm1 
    ``` 
 ## Pretrained model
-A pretrained model on the task using pseudo-colored RGB images along with the solverstate can be found [here](https://www.dropbox.com/sh/3fuxhit6h28dnk4/AAAxuRwCGDj6PeUub4znLWAaa?dl=0):
+A pretrained model on the task using pseudo-colored RGB images along with the solverstate can be found [here](https://www.dropbox.com/sh/3fuxhit6h28dnk4/AAAxuRwCGDj6PeUub4znLWAaa?dl=0)
 
 ## Conclusions
 We provide a new method for the task of Speech/Music Discrimination using Convolutional Neural Networks.
