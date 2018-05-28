@@ -1,4 +1,12 @@
 # CNNs:Speech-Music-Discrimination
+ @article{papakostas2018speech,
+   title={Speech-Music Discrimination Using Deep Visual Feature Extractors},
+   author={Papakostas, Michalis and Giannakopoulos, Theodoros},
+   journal={Expert Systems with Applications},
+   year={2018},
+   publisher={Elsevier}
+ }
+
 
 ## Synopsis
 This project describes a new approach to the very traditional problem of Speech-Music Discrimination. According to our knowledge, the proposed method, provides state-of-the-art results on the task. We employ a Deep Convolutional Neural Network (_CNN_) and we offer a compact framework to perform segmentation and binary (Speech/Music) classification. Our method is unchained from traditional audio features, which offer inferior results on the task as shown in (--reference to the paper--). Instead it exploits the highly invariant features produced by CNNs and opperates on pseudocolored RGB or grayscale frequency-images, which represent audio segments. 
