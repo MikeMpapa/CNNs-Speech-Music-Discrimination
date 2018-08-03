@@ -9,7 +9,7 @@
 
 
 ## Synopsis
-This project describes a new approach to the very traditional problem of Speech-Music Discrimination. According to our knowledge, the proposed method, provides state-of-the-art results on the task. We employ a Deep Convolutional Neural Network (_CNN_) and we offer a compact framework to perform segmentation and binary (Speech/Music) classification. Our method is unchained from traditional audio features, which offer inferior results on the task as shown in (--reference to the paper--). Instead it exploits the highly invariant features produced by CNNs and opperates on pseudocolored RGB or grayscale frequency-images, which represent audio segments. 
+This project describes a new approach to the very traditional problem of Speech-Music Discrimination. According to our knowledge, the proposed method, provides state-of-the-art results on the task. We employ a Deep Convolutional Neural Network (_CNN_) and we offer a compact framework to perform segmentation and binary (Speech/Music) classification, by exploing the benefits of transfering knowledge from pretrained architectures on Imagenet.  Our method is unchained from traditional audio features, which offer inferior results on the task. Instead it exploits the highly invariant features produced by CNNs and opperates on pseudocolored RGB or grayscale frequency-images, which represent audio segments. 
    
    ### Evaluation of different methods on 11-hours of continous radio streams 
 *Dataset included speeh-only, music-only and speech-music overlaping audio samples - for further details loook at the paper
