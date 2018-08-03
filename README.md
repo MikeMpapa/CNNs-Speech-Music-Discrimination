@@ -10,6 +10,17 @@
 
 ## Synopsis
 This project describes a new approach to the very traditional problem of Speech-Music Discrimination. According to our knowledge, the proposed method, provides state-of-the-art results on the task. We employ a Deep Convolutional Neural Network (_CNN_) and we offer a compact framework to perform segmentation and binary (Speech/Music) classification. Our method is unchained from traditional audio features, which offer inferior results on the task as shown in (--reference to the paper--). Instead it exploits the highly invariant features produced by CNNs and opperates on pseudocolored RGB or grayscale frequency-images, which represent audio segments. 
+   
+   ### Evaluation of different methods on 11-hours of continous radio streams 
+*Dataset included speeh-only, music-only and speech-music overlaping audio samples - for further details loook at the paper
+
+ <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/Screenshot%20from%202018-08-03%2017-23-16.png" width="900" height="600">
+ 
+   ### Roc-curves of the two proposed methods ie. with(red) and withought(blue) transfer-learning on the same dataset
+ <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/ROC_SM.png" width="900" height="400">
+ 
+   ### Evaluation of our best method(pink) against the methods proposed by [Pikrakis & Theodoridis](https://ieeexplore.ieee.org/abstract/document/6952182/) on [datasetA](https://academiccommons.columbia.edu/catalog/ac:148953) and [datasetB](https://www.cambridge.org/core/journals/organised-sound/article/marsyas-a-framework-for-audio-analysis/43A5D9BCB0F7BB439E1D4D1FF4B563C2)
+ <img src="https://github.com/MikeMpapa/CNNs-Speech-Music-Discrimination/blob/master/pikrakis_all2.png" width="900" height="500">
 
 **The repository consists of the following modules:**
  * Audio segmentation using the [PyAudioAnalysis](https://github.com/tyiannak/pyAudioAnalysis.git) lybrary
